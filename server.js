@@ -5,6 +5,7 @@ var express = require('express'),
     eps = require('ejs'),
     morgan = require('morgan');
 var url = require('url');
+var cors = require('cors')
 var shopifyHelper = require("./app/shopify_helper");
 
 Object.assign = require('object-assign')
@@ -12,6 +13,7 @@ Object.assign = require('object-assign')
 app.engine('html', require('ejs').renderFile);
 app.use(morgan('combined'))
 app.use(express.static('public'));
+app.use(cors())
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
     ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
