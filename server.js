@@ -4,7 +4,7 @@ var express = require('express'),
     app = express(),
     eps = require('ejs'),
     morgan = require('morgan');
-
+var url = require('url');
 var shopifyHelper = require("./app/shopify_helper");
 
 Object.assign = require('object-assign')
@@ -121,6 +121,38 @@ app.get('/shop/categories', function (req, res) {
     }))
 })
 
+app.get("/shop/:name/categories", function (req, res) {
+    var name = req.params.name;
+    console.log("getting categories for " + name);
+    shopifyHelper.getCategories(name, shopifyHelper.getCallback(function (data) {
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.end(data);
+    }, function (err) {
+        res.writeHead(400, {'Content-Type': 'application/json'});
+        res.end(err);
+    }))
+})
+
+
+app.get('/shop/:name/proxy/:href(*)', function (req, res) {
+    var query = "";
+    var url_parts = req.url.split("?");
+    if (url_parts.length > 1) {
+        query = "?" + url_parts[1];
+    }
+
+    var path = "/" + req.params.href + query;
+    var name = req.params.name;
+
+
+    console.log(path);
+    shopifyHelper.proxyGet(name, path, shopifyHelper.getCallback(function (data) {
+        res.send(data);
+    }, function (err) {
+        res.send(err);
+    }));
+
+});
 
 app.get("/shop/:name", function (req, res) {
 
