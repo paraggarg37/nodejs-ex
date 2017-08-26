@@ -15,16 +15,16 @@
          "image":"{% if sublink.object.image %}{{ sublink.object.image | img_url: 'medium' }}{% endif %}",
          "title":"{{sublink.object.title}}",
          "url":"{{sublink.object.url }}"
-        },
+        }{% if forloop.last != true %},{% else %}
     {% endfor %}
      ]
-  },{% endfor %}],
+  }{% if forloop.last != true %},{% else %}{% endfor %}],
 "app-banners":[
     {% for link in linklists.app-banners.links %}{
     "id":"{{link.object.id }}",
     "url":"{{ link.url }}",
     "image":"{{ link.object.image | img_url: 'medium' }}",
     "title":"{{ link.title }}"
-},{% endfor %}]
+}{% if forloop.last != true %},{% else %}{% endfor %}]
 
 }
