@@ -4,7 +4,7 @@
 var shopifyObj = require('shopify-node');
 
 var SHOPIFY_SECRET = "7b830254df69f0826dffcb28f72167a3";
-var SHOPIFY_REDIRECT = "https://28b98a72.ngrok.io/shopify_redirect";
+var SHOPIFY_REDIRECT = "http://nodejs-mongo-persistent-purrxapps.a3c1.starter-us-west-1.openshiftapps.com/shopify_redirect";
 var SHOPIFY_ID = "c9c1330745e6fa697b0a153291885db8";
 var SHOPIFY_SCOPE = 'read_products,read_content,read_themes,read_customers,read_orders,read_script_tags,read_fulfillments,read_shipping,write_products,write_content,write_themes,write_customers,write_orders,write_script_tags,write_fulfillments,write_shipping,read_product_listings,write_checkouts';
 

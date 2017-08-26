@@ -1,4 +1,9 @@
-{% layout none %}[{% for link in linklists.main-menu.links %}{
+{% layout none %}{
+
+
+"main-menu":[
+
+{% for link in linklists.main-menu.links %}{
     "id":"{{link.object.id }}",
     "url":"{{ link.url }}",
     "image":"{% if link.object.image %}{{ link.object.image | img_url: 'medium' }}{% endif %}",
@@ -13,4 +18,13 @@
         },
     {% endfor %}
      ]
-  },{% endfor %}]
+  },{% endfor %}],
+"app-banners":[
+    {% for link in linklists.app-banners.links %}{
+    "id":"{{link.object.id }}",
+    "url":"{{ link.url }}",
+    "image":"{{ link.object.image | img_url: 'medium' }}",
+    "title":"{{ link.title }}"
+},{% endfor %}]
+
+}
