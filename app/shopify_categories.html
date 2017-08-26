@@ -1,0 +1,16 @@
+{% layout none %}[{% for link in linklists.main-menu.links %}{
+    "id":"{{link.object.id }}",
+    "url":"{{ link.url }}",
+    "image":"{% if link.object.image %}{{ link.object.image | img_url: 'medium' }}{% endif %}",
+    "title":"{{ link.title }}",
+    "links":[
+    {% for sublink in linklists.[link.handle].links %}
+        {
+         "id":"{{sublink.object.id }}",
+         "image":"{% if sublink.object.image %}{{ sublink.object.image | img_url: 'medium' }}{% endif %}",
+         "title":"{{sublink.object.title}}",
+         "url":"{{sublink.object.url }}"
+        },
+    {% endfor %}
+     ]
+  },{% endfor %}]

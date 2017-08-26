@@ -1,0 +1,26 @@
+{
+  "name": "shopify-bepoz",
+  "homepage": "https://github.com/jaidevsds/bepoz_shopify_integration",
+  "authors": [
+    "Parag Garg <paraggarg37@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material-data-table": "^0.10.10",
+    "angular-route": "1.5.5",
+    "mdPickers": "^0.7.5",
+    "angular-material": "1.1.0",
+    "angular-aria": "1.5.5",
+    "angular-messages": "1.5.5"
+  }
+}
