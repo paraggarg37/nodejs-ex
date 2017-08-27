@@ -56,7 +56,7 @@ var helper = {
             secret: SHOPIFY_SECRET,
             redirect: SHOPIFY_REDIRECT,
             scope: SHOPIFY_SCOPE,
-            access_token: "b271b8e6b8aa4d78f0e48ca86fbe132b"
+            access_token: _tokensCache[shop]
         });
     },
 
@@ -75,7 +75,7 @@ var helper = {
 
     getCategories: function (shop, callback) {
         var that = this;
-        console.log("shop name "+shop);
+        console.log("shop name " + shop);
         this.getShopData(shop, this.getCallback(function (data) {
             console.log("get shop success getting categories");
             var domain = data.shop.domain
@@ -85,7 +85,7 @@ var helper = {
     },
     getCategoriesFromDomain: function (domain, callback) {
 
-        console.log("getting categories for "+domain);
+        console.log("getting categories for " + domain);
         var options = {
             host: domain,
             path: '/apps/purrxproxy'
