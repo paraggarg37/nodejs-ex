@@ -56,7 +56,7 @@ var helper = {
             secret: SHOPIFY_SECRET,
             redirect: SHOPIFY_REDIRECT,
             scope: SHOPIFY_SCOPE,
-            access_token: _tokensCache[shop]
+            access_token: "b271b8e6b8aa4d78f0e48ca86fbe132b"
         });
     },
 

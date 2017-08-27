@@ -115,6 +115,7 @@ app.get("/shopify_redirect", function (req, res) {
 });
 
 app.get('/shop/categories', function (req, res) {
+    console.log("called categories");
     shopifyHelper.getCategoriesTemplate(shopifyHelper.getCallback(function (data) {
         res.writeHead(200, {'Content-Type': 'application/liquid'});
         res.end(data);
