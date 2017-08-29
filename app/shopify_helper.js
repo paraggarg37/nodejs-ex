@@ -150,7 +150,7 @@ var helper = {
                 callback.error();
             } else {
                 console.log("result is not null");
-                console.log("result");
+                console.log(result);
                 callback.success(result[0]);
             }
         })
