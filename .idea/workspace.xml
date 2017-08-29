@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="30129527-435f-4d1e-acb7-7e139aea4c8d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/shopify_helper.js" afterPath="$PROJECT_DIR$/app/shopify_helper.js" />
     </list>
     <ignored path="ShopifyNode.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,8 +47,8 @@
       <file leaf-file-name="shopify_helper.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/shopify_helper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="263">
-              <caret line="152" column="38" selection-start-line="152" selection-start-column="38" selection-end-line="152" selection-end-column="38" />
+            <state relative-caret-position="308">
+              <caret line="153" column="42" selection-start-line="153" selection-start-column="42" selection-end-line="153" selection-end-column="42" />
               <folding>
                 <element signature="e#0#39#0" expanded="false" />
               </folding>
@@ -355,12 +356,12 @@
       <workItem from="1503745474322" duration="3992000" />
       <workItem from="1503990727968" duration="1244000" />
       <workItem from="1504000575253" duration="2965000" />
-      <workItem from="1504026308357" duration="781000" />
+      <workItem from="1504026308357" duration="889000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20609000" />
+    <option name="totallyTimeSpent" value="20717000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -829,8 +830,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/shopify_helper.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="152" column="38" selection-start-line="152" selection-start-column="38" selection-end-line="152" selection-end-column="38" />
+        <state relative-caret-position="308">
+          <caret line="153" column="42" selection-start-line="153" selection-start-column="42" selection-end-line="153" selection-end-column="42" />
           <folding>
             <element signature="e#0#39#0" expanded="false" />
           </folding>

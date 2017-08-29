@@ -146,12 +146,12 @@ var helper = {
 
     getTokenByShop: function (shop, callback) {
         _db.collection("shops").findOne({"shop": shop}, {}, function (err, result) {
-            if (result == null || result.length == 0) {
+            if (result == null) {
                 callback.error();
             } else {
                 console.log("result is not null");
                 console.log(result);
-                callback.success(result[0]);
+                callback.success(result);
             }
         })
     },
