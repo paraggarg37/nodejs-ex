@@ -146,7 +146,7 @@ var helper = {
 
     getTokenByShop: function (shop, callback) {
         _db.collection("shops").findOne({"shop": shop}, {}, function (err, result) {
-            if (result.length == 0) {
+            if (result == null || result.length == 0) {
                 callback.error();
             } else {
                 callback.success(result[0]);
