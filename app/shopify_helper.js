@@ -149,6 +149,8 @@ var helper = {
             if (result == null || result.length == 0) {
                 callback.error();
             } else {
+                console.log("result is not null");
+                console.log("result");
                 callback.success(result[0]);
             }
         })
