@@ -38,6 +38,8 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
         mongoURL += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
 
     }
+} else {
+    mongoURL = 'mongodb://localhost:27017/purrx';
 }
 var db = null,
     dbDetails = new Object();
@@ -59,9 +61,11 @@ var initDb = function (callback) {
         dbDetails.url = mongoURLLabel;
         dbDetails.type = 'MongoDB';
 
+        shopifyHelper.init(db);
         console.log('Connected to MongoDB at: %s', mongoURL);
     });
 };
+
 
 /*app.get('/', function (req, res) {
  // try to initialize the db on every request if it's not already
@@ -122,6 +126,16 @@ app.get('/shop/categories', function (req, res) {
     }, function (err) {
         res.send(err);
     }))
+})
+
+app.get('/token/:name', function (req, res) {
+    db.collection("shops").findOne({"shop":req.params.name},{},function (err,result) {
+        if(result == null){
+            res.send("null");
+        }else{
+            res.send(re)
+        }
+    })
 })
 
 app.get("/shop/:name/categories", function (req, res) {

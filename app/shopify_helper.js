@@ -10,8 +10,12 @@ var SHOPIFY_SCOPE = 'read_products,read_content,read_themes,read_customers,read_
 
 var _tokensCache = {};
 var fs = require('fs');
+var _db = null;
 var helper = {
 
+    init: function (db) {
+        _db = db;
+    },
     getUrl: function (name) {
 
         var shopify = new shopifyObj({
@@ -40,6 +44,22 @@ var helper = {
                 console.log(err);
                 callback.error();
             } else {
+
+
+                _db.collection("shops").updateOne({
+                    "shop": shop
+                }, {
+                    $set: {
+                        "shop": shop,
+                        "token": token,
+                        "updatedAt": new Date()
+                    }
+                    ,
+                    $setOnInsert: {
+                        createdAt: new Date()
+                    }
+                }, {upsert: true});
+
                 console.log(token);
                 _tokensCache[shop] = token;
                 callback.success();
@@ -48,29 +68,38 @@ var helper = {
         })
     },
 
-    getAuthShop: function (shop) {
+    getAuthShop: function (shop, callback) {
+        this.getTokenByShop(shop, this.getCallback(function (result) {
+            var shopify = new shopifyObj({
+                shop_name: shop,
+                id: SHOPIFY_ID,
+                secret: SHOPIFY_SECRET,
+                redirect: SHOPIFY_REDIRECT,
+                scope: SHOPIFY_SCOPE,
+                access_token: result.token
+            });
+            callback.success(shopify);
+        }, callback.error));
 
-        return new shopifyObj({
-            shop_name: shop,
-            id: SHOPIFY_ID,
-            secret: SHOPIFY_SECRET,
-            redirect: SHOPIFY_REDIRECT,
-            scope: SHOPIFY_SCOPE,
-            access_token: _tokensCache[shop]
-        });
+
     },
 
     getShopData: function (shop, callback) {
         console.log("requesting");
-        this.getAuthShop(shop).get('/admin/shop.json', function (err, data) {
-            if (err) {
-                console.log(err);
-                callback.error(err);
-            } else {
-                console.log("success")
-                callback.success({token: _tokensCache[shop], shop: data.shop});
-            }
-        })
+        this.getAuthShop(shop, this.getCallback(function (shopify) {
+            shopify.get('/admin/shop.json', function (err, data) {
+                if (err) {
+                    console.log(err);
+                    callback.error(err);
+                } else {
+                    console.log("success")
+                    callback.success({token: _tokensCache[shop], shop: data.shop});
+                }
+            })
+
+        }, callback.error))
+
+
     },
 
     getCategories: function (shop, callback) {
@@ -115,17 +144,30 @@ var helper = {
 
     },
 
-    proxyGet: function (shop, path, callback) {
-
-        this.getAuthShop(shop).get(path, function (err, data) {
-            if (err) {
-                console.log(err);
-                callback.error(err);
+    getTokenByShop: function (shop, callback) {
+        _db.collection("shops").findOne({"shop": shop}, {}, function (err, result) {
+            if (result.length == 0) {
+                callback.error();
             } else {
-                console.log("success")
-                callback.success(data);
+                callback.success(result[0]);
             }
         })
+    },
+
+    proxyGet: function (shop, path, callback) {
+
+        this.getAuthShop(shop, this.getCallback(function (shopify) {
+            shopify.get(path, function (err, data) {
+                if (err) {
+                    console.log(err);
+                    callback.error(err);
+                } else {
+                    console.log("success")
+                    callback.success(data);
+                }
+            })
+        }, callback.error));
+
     },
 
     getName: function (shop) {
